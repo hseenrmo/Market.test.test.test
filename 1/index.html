@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Market</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <header>
+        <h1>Car Market</h1>
+        <p>Buy or Sell Cars Easily</p>
+    </header>
+
+    <main>
+        <!-- Form for adding cars -->
+        <section class="form-section">
+            <h2>Post Your Car</h2>
+            <form id="carForm">
+                <label for="category">Category:</label>
+                <select id="category" required>
+                    <option value="">Select Category</option>
+                    <option value="suv">SUV</option>
+                    <option value="sedan">Sedan</option>
+                    <option value="pickup">Pickup</option>
+                    <option value="van">Van</option>
+                    <option value="cargo">Cargo Vehicle</option>
+                </select>
+
+                <label for="model">Model:</label>
+                <select id="model" required>
+                    <option value="">Select Model</option>
+                </select>
+
+                <label for="year">Year:</label>
+                <select id="year" required>
+                    <option value="">Select Year</option>
+                    <script>
+                        for (let i = 2002; i <= 2025; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+
+                <label for="mileage">Mileage (km):</label>
+                <input type="number" id="mileage" placeholder="Enter mileage" required>
+
+                <label for="paint">Paint Condition:</label>
+                <select id="paint" required>
+                    <option value="no-damage">No Damage</option>
+                    <option value="one-piece">One Piece Painted</option>
+                    <option value="two-piece">Two Pieces Painted</option>
+                    <option value="three-piece">Three Pieces Painted</option>
+                    <option value="more">More than Three</option>
+                </select>
+
+                <label for="price">Price (USD):</label>
+                <input type="number" id="price" placeholder="Enter price" required>
+
+                <label for="province">Province:</label>
+                <select id="province" required>
+                    <option value="">Select Province</option>
+                    <option value="damascus">Damascus</option>
+                    <option value="aleppo">Aleppo</option>
+                    <option value="homs">Homs</option>
+                    <option value="hama">Hama</option>
+                    <option value="latakia">Latakia</option>
+                </select>
+
+                <label for="phone">Contact Number:</label>
+                <input type="text" id="phone" placeholder="Enter phone number" required>
+
+                <label for="images">Upload Images:</label>
+                <input type="file" id="images" accept="image/*" multiple required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <!-- Section to display cars -->
+        <section class="car-display" id="carDisplay">
+            <h2>Available Cars</h2>
+            <div class="car-list"></div>
+        </section>
+    </main>
+
+    <script src="script2.js"></script>
+</body>
+</html>

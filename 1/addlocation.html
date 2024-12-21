@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سوق السيارات السوري</title>
+    <style>
+        /* إعداد ألوان وتنسيقات حديثة */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background: #34495e;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            }
+
+            .card .image-slider {
+                position: relative;
+                overflow: hidden;
+                height: 200px;
+            }
+
+                .card .image-slider img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: none;
+                }
+
+                    .card .image-slider img.active {
+                        display: block;
+                    }
+
+                .card .image-slider button {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: rgba(0, 0, 0, 0.5);
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                    padding: 10px;
+                    z-index: 10;
+                }
+
+                .card .image-slider .prev {
+                    left: 10px;
+                }
+
+                .card .image-slider .next {
+                    right: 10px;
+                }
+
+            .card .details {
+                padding: 15px;
+            }
+
+                .card .details h3 {
+                    margin: 0 0 10px;
+                    font-size: 18px;
+                    color: #34495e;
+                }
+
+                .card .details p {
+                    margin: 5px 0;
+                    font-size: 14px;
+                    color: #555;
+                }
+
+        .add-car-form {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+            .add-car-form h3 {
+                margin-bottom: 20px;
+                color: #34495e;
+            }
+
+            .add-car-form input,
+            .add-car-form select,
+            .add-car-form button,
+            .add-car-form textarea {
+                width: 100%;
+                margin-bottom: 15px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+            .add-car-form button {
+                background: #34495e;
+                color: #fff;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+                .add-car-form button:hover {
+                    background: #2c3e50;
+                }
+    </style>
+</head>
+<body>
+    <header>سوق السيارات السوري</header>
+
+    <!-- نموذج إضافة سيارة -->
+    <div class="add-car-form">
+        <h3>أضف إعلانًا لسيارتك</h3>
+        <form id="carForm">
+            <select id="category" required>
+                <option value="">اختر التصنيف</option>
+                <option value="جيب">جيب</option>
+                <option value="تكسي">تكسي</option>
+                <option value="بيكاب">بيكاب</option>
+                <option value="فان">فان</option>
+                <option value="سيارات نقل">سيارات نقل متوسطة وصغيرة</option>
+            </select>
+            <select id="carName" required>
+                <option value="">اختر اسم السيارة</option>
+            </select>
+            <select id="year" required>
+                <option value="">اختر سنة الصنع</option>
+            </select>
+            <select id="fuelType" required>
+                <option value="">اختر نوع الوقود</option>
+                <option value="بنزين">بنزين</option>
+                <option value="ديزل">ديزل</option>
+                <option value="كهرباء">كهرباء</option>
+                <option value="هجين">هجين</option>
+            </select>
+            <select id="paintCondition" required>
+                <option value="">اختر حالة الطلاء</option>
+                <option value="خالي العلام">خالي العلام</option>
+                <option value="قطعة دهان">قطعة دهان</option>
+                <option value="قطعتين دهان">قطعتين دهان</option>
+                <option value="ثلاث قطع">ثلاث قطع</option>
+                <option value="أكثر من ثلاث">أكثر من ثلاث</option>
+            </select>
+            <input type="number" id="price" placeholder="السعر بالدولار" required>
+            <select id="location" required>
+                <option value="">اختر المحافظة</option>
+                <option value="الحسكة">الحسكة</option>
+                <option value="حلب">حلب</option>
+                <option value="دير الزور">دير الزور</option>
+                <option value="الرقة">الرقة</option>
+                <option value="حماه">حماه</option>
+                <option value="دمشف">دمشق</option>
+                <option value="اللاذقية">اللاذقية</option>
+                <option value="ادلب">ادلب</option>
+                <option value="اللاذقية">اللاذقية</option>
+                <option value="حمص">حمص</option>
+                <option value="درعا">درعا</option>
+                <option value="سويدا">سويدا</option>
+                <option value="طرطوس">طرطوس</option>
+                <option value="القنيطرة">القنيطرة</option>
+
+
+                <!-- أضف باقي المحافظات -->
+            </select>
+            <textarea id="office" placeholder="تواجد مكتب السيارات (اختياري)"></textarea>
+            <input type="tel" id="phone" placeholder="رقم التواصل" required>
+            <input type="file" id="images" multiple accept="image/*" required>
+            <button type="submit">إضافة</button>
+        </form>
+    </div>
+
+    <!-- حاوية السيارات -->
+    <div class="container" id="carContainer"></div>
+
+    <script>
+        // تحديث بيانات السيارة حسب التصنيف
+        const carModels = {
+            جيب: ["سنتافي", "كيا سورينتو", "برادو"],
+            تكسي: ["أزيرا", "كيا أوبتيما", "أفانتي"],
+            بيكاب: ["تويوتا هايلوكس", "نيسان نافارا"],
+            فان: ["كيا كرنفال", "تويوتا هايس"],
+            "سيارات نقل": ["كيا 2700", "H100"]
+        };
+
+        const categoryField = document.getElementById("category");
+        const carNameField = document.getElementById("carName");
+
+        categoryField.addEventListener("change", () => {
+            const selectedCategory = categoryField.value;
+            carNameField.innerHTML = '<option value="">اختر اسم السيارة</option>';
+            if (carModels[selectedCategory]) {
+                carModels[selectedCategory].forEach(model => {
+                    const option = document.createElement("option");
+                    option.value = model;
+                    option.textContent = model;
+                    carNameField.appendChild(option);
+                });
+            }
+        });
+
+        // إنشاء سنوات الإنتاج
+        const yearField = document.getElementById("year");
+        for (let year = 2025; year >= 2002; year--) {
+            const option = document.createElement("option");
+            option.value = year;
+            option.textContent = year;
+            yearField.appendChild(option);
+        }
+    </script>
+</body>
+</html>
